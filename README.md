@@ -1,3 +1,3 @@
-Прогноз погоды с поиском по городу, получаемый по API с сайта https://www.weatherapi.com/	
+Текущие погодные условия с поиском по городу, получаемые с сайта https://www.weatherapi.com/	
 
 https://vinncencio.github.io/weather-app/
