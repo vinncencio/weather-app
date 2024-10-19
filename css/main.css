@@ -119,6 +119,10 @@ legend {
   top: 9px;
   right: 9px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.form-btn:active {
+  transform: translate(0px, -6px);
 }
 
 .weather-info {
@@ -190,6 +194,12 @@ legend {
   justify-content: center;
   font-size: 16px;
 }
+@media (max-width: 320px) {
+  .weather-wind {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .weather-wind-desc {
   display: flex;
@@ -215,6 +225,14 @@ legend {
   justify-content: center;
   gap: 30px;
 }
+@media (max-width: 320px) {
+  .weather-wind-speed {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+  }
+}
 
 .weather-wind-arrow {
   width: 50px;
@@ -234,7 +252,6 @@ legend {
 }
 .weather-wind-kph span, .weather-wind-ms span {
   font-size: 24px;
-  vertical-align: middle;
   padding-left: 4px;
 }
 
