@@ -59,7 +59,7 @@ form.onsubmit = async function(e){
         const windDirR = windDir.find((obj) => obj.windDirEng === data.current.wind_dir);
         const windMs = Math.round(parseFloat(data.current.wind_kph/3.6), -1);
         const windPowerDesc = windPower.find((obj) => obj.wind_kph_min <= data.current.wind_kph && data.current.wind_kph <= obj.wind_kph_max);
-        const windDegree = parseFloat(data.current.wind_degree)+180;
+        const windDegree = parseInt(data.current.wind_degree) + 180;
         const weatherData = {
             name: data.location.name,
             country: data.location.country,
