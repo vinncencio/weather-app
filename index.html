@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погода</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+</head>
+<body>
+<main class="weather-app">
+    <div class="container">
+        <header class="header">
+            <form class="form" id="form">
+                <input type="text" class="form-input" placeholder="введите город">
+                <button class="form-btn"><img src="./img/search.svg" alt="search"></button>
+            </form>
+        </header>
+        <section class="weather-info">
+            <div class="weather-info-city">Kolpino <span>Russia</span></div>
+            <div class="weather-info-row">
+                <div class="weather-info-temp">10<span>°c</span></div>
+                <img class="weather-img" src="./img/cloudy.svg" alt="Weather">
+            </div>
+            <div class="weather-desc">Облачно</div>
+        </section>
+        <footer class="footer">
+            <div>V &copy;2023</div>
+        </footer>
+    </div>
+</main>
+<script src="./js/conditions.js" type="module"></script>
+<script src="./js/main.js" type="module"></script>
+</body>
+</html>
