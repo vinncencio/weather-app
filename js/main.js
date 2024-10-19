@@ -1,10 +1,11 @@
 import conditions from "./conditions.js";
-import windDir from "./wind-dir.js";
+import windDirs from "./wind-dirs.js";
 import windPower from "./wind-power.js";
 const form = document.querySelector('#form');
 const input = document.querySelector('.form-input');
 const apiKey = '8d9deac627384df6b1102656231012';
 const header = document.querySelector('.header');
+
 function removeCard(){
     const prevCard = document.querySelector('.weather-info');
     if (prevCard) prevCard.remove();
@@ -56,7 +57,7 @@ form.onsubmit = async function(e){
         const info = conditions.find((obj) => obj.code === data.current.condition.code);
         const condition = data.current.is_day ? info.languages[23]['day_text'] : info.languages[23]['night_text'];
         const iconUrl = 'https:' + data.current.condition.icon;
-        const windDirR = windDir.find((obj) => obj.windDirEng === data.current.wind_dir);
+        const windDir = windDirs.find((obj) => obj.windDirEng === data.current.wind_dir);
         const windMs = Math.round(parseFloat(data.current.wind_kph/3.6), -1);
         const windPowerDesc = windPower.find((obj) => obj.wind_kph_min <= data.current.wind_kph && data.current.wind_kph <= obj.wind_kph_max);
         const windDegree = parseInt(data.current.wind_degree) + 180;
@@ -67,7 +68,7 @@ form.onsubmit = async function(e){
             conditions: condition,
             icon: iconUrl,
             windkph: data.current.wind_kph,
-            winddir: windDirR.windDirRus,
+            winddir: windDir.windDirRus,
             winddegree: windDegree,
             windms: windMs,
             windpower: windPowerDesc.wind_power_desc,

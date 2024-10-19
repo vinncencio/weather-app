@@ -1,4 +1,4 @@
-const windDir = [
+const windDirs = [
 	{"windDirEng": "N", "windDirRus": "северный"},
 	{"windDirEng": "NNE", "windDirRus": "северный-северо-восточный"},
 	{"windDirEng": "NE", "windDirRus": "северо-восточный"},
@@ -16,4 +16,4 @@ const windDir = [
 	{"windDirEng": "NW", "windDirRus": "северо-западный"},
 	{"windDirEng": "NNW", "windDirRus": "северный-северо-западный"},
 ];
-export default windDir;
+export default windDirs;
