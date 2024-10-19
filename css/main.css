@@ -78,7 +78,7 @@ legend {
 }
 
 .weather-app {
-  font-family: "Rubik", sans-serif;
+  font-family: "Nunito", sans-serif;
   display: grid;
   width: 100vw;
   height: 100vh;
@@ -105,7 +105,6 @@ legend {
   height: 40px;
   background-color: #fff;
   border-radius: 60px;
-  cursor: pointer;
 }
 
 .form-input {
@@ -119,25 +118,26 @@ legend {
   content: "";
   top: 9px;
   right: 9px;
+  cursor: pointer;
 }
 
 .weather-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
 }
 
 .weather-info-city {
+  margin-bottom: 10px;
   display: flex;
-  font-weight: 500;
-  font-size: 28px;
+  font-weight: 700;
+  font-size: 36px;
   color: #000;
 }
 .weather-info-city span {
-  padding: 3px 5px;
+  padding: 3px 12px;
   display: inline-block;
-  font-size: 16px;
+  font-size: 24px;
   vertical-align: middle;
   color: #525252;
 }
@@ -154,13 +154,21 @@ legend {
   align-items: center;
   text-align: center;
 }
+@media (max-width: 320px) {
+  .weather-info-row {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .weather-info-temp {
   font-size: 60px;
+  font-weight: 500;
 }
 .weather-info-temp span {
+  padding-left: 6px;
   font-size: 40px;
-  vertical-align: text-top;
+  vertical-align: middle;
 }
 
 .weather-img {
@@ -168,14 +176,77 @@ legend {
 }
 
 .weather-desc {
-  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.weather-wind {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.weather-wind-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.weather-wind-dir {
+  font-size: 14px;
+}
+
+.weather-wind-power {
+  font-size: 16px;
+  text-transform: lowercase;
+}
+
+.weather-wind-speed {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.weather-wind-arrow {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.weather-wind-arrow img {
+  width: 30px;
+}
+
+.weather-wind-kph, .weather-wind-ms {
+  font-size: 36px;
+}
+.weather-wind-kph span, .weather-wind-ms span {
+  font-size: 24px;
+  vertical-align: middle;
+  padding-left: 4px;
+}
+
+.weather-wind-ms {
+  color: #333;
 }
 
 .footer {
   padding: 7px 15px;
   width: 100%;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 10px;
   text-align: center;
   color: rgba(255, 255, 255, 0.4);
 }/*# sourceMappingURL=main.css.map */
