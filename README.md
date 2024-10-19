@@ -1,2 +1,3 @@
-Текущие погодные условия с поиском по городу, получаемые с сайта https://www.weatherapi.com/
+Текущие погодные условия с поиском по городу, получаемые с сайта www.weatherapi.com
 
+https://vinncencio.github.io/weather-app3/
