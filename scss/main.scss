@@ -21,14 +21,31 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    width: 100%;
     height: 40px;
+    top: 50%;
+    left: 50%;
     background-color: #fff;
     border-radius: 60px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &.focus {
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+    }
 }
 .form-input {
+    position: absolute;
     padding-left: 10px;
-    max-width: 240px;
+    padding-bottom: 2px;
     width: 100%;
+    font-size: 20px;
+    background: none;
+    color: #5a6674;
+    border: none;
+    appearance: none;
+    outline: none;
 }
 .form-btn {
     position: absolute;
@@ -37,7 +54,7 @@
     right: 9px;
     cursor: pointer;
     transition: all .3s ease-in-out;
-    &:active {transform: translate(0px, -6px);}
+    &:active {transform: translate(0px, -10px);}
 }
 .weather-info {
     display: flex;
