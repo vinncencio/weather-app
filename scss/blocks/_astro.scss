@@ -1,0 +1,44 @@
+.astro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.astro-localtime {
+    font-size: 16px;
+}
+.astro-row {
+    display: flex;
+    gap: 20px;
+    @media (max-width: 500px) {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+.astro-sun {
+    display: flex;
+    gap: 10px;
+}
+.astro-suntimes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    & img {
+        display: inline;
+        margin-right: 10px;
+    }
+}
+.astro-times-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+}
+.astro-sun-img {width: 50px;}
+.astro-img {width: 20px;}
+.astro-moon {
+    display: flex;
+    gap: 10px;
+}
