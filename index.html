@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Погода</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300..800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="./img/icons/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="./css/main.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.2.0/math.js"></script>
 </head>
@@ -14,7 +14,7 @@
     <div class="container">
         <header class="header">
             <form class="form" id="form">
-                <input type="text" class="form-input" placeholder="введите город" value="">
+                <input type="text" class="form-input" placeholder="введите город" value="ленинград">
                 <button class="form-btn"><img src="./img/search.svg" alt="search"></button>
             </form>
         </header>
@@ -22,10 +22,45 @@
             <div class="weather-info-city">Kolpino <span>Russia</span></div>
             <div class="weather-info-row">
                 <div class="weather-info-temp">10<span>°c</span></div>
-                <img class="weather-img" src="./img/cloudy.svg" alt="Weather">
+                <img class="weather-img" src="./img/cloudy.svg" alt="Cloudy weather">
             </div>
             <div class="weather-desc"></div>
             <div class="weather-wind"></div>
+            <div class="astro">
+                <p class="astro-localtime">местное время - 13:52, 30 января 2025</p>
+                <div class="astro-row">
+                    <div class="astro-sun">
+                        <img class="astro-sun-img" src="./img/icons/sun.png" alt="sun">
+                        <div class="astro-suntimes">
+                            <div class="astro-times-row">
+                                <img class="astro-img" src="./img/icons/sunrise.png" alt="sunrise">
+                                <p class="astro-p">восход: <span>9:14</span></p>
+                            </div>
+                            <div class="astro-times-row">
+                                <img class="astro-img" src="./img/icons/sunset.png" alt="sunset">
+                                <p class="astro-p">закат: <span>17:08</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="astro-sun">
+                        <img class="astro-sun-img" src="./img/icons/moon-crescent.png" alt="moon">
+                        <div class="astro-suntimes">
+                            <div class="astro-times-row">
+                                <img class="astro-img" src="./img/icons/moonrise.png" alt="moonrise">
+                                <p class="astro-p">восход: <span>10:08</span></p>
+                            </div>
+                            <div class="astro-times-row">
+                                <img class="astro-img" src="./img/icons/moonset.png" alt="moonset">
+                                <p class="astro-p">закат: <span>18:16</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="astro-moon">
+                    <div class="astro-moon-phase"></div>
+                    <div class="astro-moon-phase">растущий месяц<span> светимость: 0%</span></div>
+                </div>
+            </div>        
         </section>
         <footer class="footer">
             <div>V &copy; 2023-2024</div>

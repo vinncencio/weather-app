@@ -77,13 +77,7 @@ legend {
   display: block;
 }
 
-.weather-app {
-  font-family: "Nunito", sans-serif;
-  display: grid;
-  width: 100vw;
-  height: 100vh;
-}
-
+/* base styles */
 .container {
   display: flex;
   flex-direction: column;
@@ -151,6 +145,14 @@ legend {
   font-size: 10px;
   text-align: center;
   color: rgba(255, 255, 255, 0.4);
+}
+
+/* weather pannel */
+.weather-app {
+  font-family: "Nunito", sans-serif;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
 }
 
 .weather-info {
@@ -287,17 +289,18 @@ legend {
   color: #333;
 }
 
+/* astro pannel */
 .astro {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
   margin-top: 20px;
 }
 
 .astro-localtime {
   font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .astro-row {
@@ -316,6 +319,12 @@ legend {
   gap: 10px;
 }
 
+.astro-sun-img {
+  width: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .astro-suntimes {
   display: flex;
   flex-direction: column;
@@ -330,19 +339,31 @@ legend {
 .astro-times-row {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 5px;
   font-size: 14px;
 }
 
-.astro-sun-img {
-  width: 50px;
-}
-
 .astro-img {
-  width: 20px;
+  width: 30px;
 }
 
 .astro-moon {
   display: flex;
   gap: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.astro-moon-phase {
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 30px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+.astro-moon-phase span {
+  font-size: 12px;
+  color: #333;
 }/*# sourceMappingURL=main.css.map */

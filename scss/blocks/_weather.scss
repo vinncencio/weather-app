@@ -1,3 +1,10 @@
+/* weather pannel */
+.weather-app {
+    font-family: "Nunito", sans-serif;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+}
 .weather-info {
     display: flex;
     flex-direction: column;

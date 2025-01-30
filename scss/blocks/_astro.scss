@@ -1,13 +1,15 @@
+/* astro pannel */
 .astro {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    // gap: 5px;
     margin-top: 20px;
 }
 .astro-localtime {
     font-size: 16px;
+    margin-bottom: 5px;
 }
 .astro-row {
     display: flex;
@@ -20,6 +22,10 @@
 .astro-sun {
     display: flex;
     gap: 10px;
+}
+.astro-sun-img {
+    width: 50px;
+    object-fit: contain;
 }
 .astro-suntimes {
     display: flex;
@@ -34,12 +40,26 @@
 .astro-times-row {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     font-size: 14px;
 }
-.astro-sun-img {width: 50px;}
-.astro-img {width: 20px;}
+.astro-img {width: 30px;}
 .astro-moon {
     display: flex;
     gap: 10px;
+    width: 100%;
+    text-align: center;
+}
+.astro-moon-phase {
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-top: 5px;
+    font-size: 14px;
+    & span {
+        font-size: 12px;
+        color: #333;
+    }
 }

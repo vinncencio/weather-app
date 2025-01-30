@@ -7,94 +7,26 @@ const form = document.querySelector('#form');
 const input = document.querySelector('.form-input');
 const apiKey = '8d9deac627384df6b1102656231012';
 const header = document.querySelector('.header');
-const footer = document.querySelector('.footer');
+// const footer = document.querySelector('.footer');
 
 function removeCard() {
     const prevCard = document.querySelector('.weather-info');
-    // const astro = document.querySelector('.astro');
-    if (prevCard) {
-        prevCard.remove();
-        // astro.remove();
-    }
+    if (prevCard) prevCard.remove();
 };
 async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     return data;
 };
 async function getAstro(city) {
     const url = `https://api.weatherapi.com/v1/astronomy.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     return data;
 };
-function showCard(currentData) {
-    const {name, country, temp, conditions, icon, winddir, winddegree, windkph, windms, windpower} = currentData;
-    const html = `
-    <section class="weather-info">
-        <div class="weather-info-city">${name} <span>${country}</span></div>
-        <div class="weather-info-row">
-            <div class="weather-info-temp">${temp}<span>°c</span></div>
-            <img class="weather-img" src="${icon}" alt="Weather">
-        </div>
-        <div class="weather-desc">${conditions}</div>
-        <div class="weather-wind">
-            <div class="weather-wind-desc">
-                <div class="weather-wind-power"><span>Ветер </span>${windpower}</div>
-                <div class="weather-wind-dir">${winddir}</div>
-            </div>
-            <div class="weather-wind-arrow">
-                <img src="./img/arrow-up.svg" style="transform: rotate(${winddegree}deg);"/>
-            </div>
-        </div>
-        <div class="weather-wind-speed">
-            <div class="weather-wind-kph">${windkph}<span>км/ч</span></div>
-            <div class="weather-wind-ms">${windms}<span>м/с</span></div>                
-        </div>
-    </section>
-    `;
-    header.insertAdjacentHTML('afterend', html);
-};
-function showAstro(astroData){
-    const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moon_illumination, is_sun_up, is_moon_up} = astroData;
-    const html = `
-    <div class="astro">
-        <p class="astro-localtime">местное время - ${localtime}</p>
-        <div class="astro-row">
-            <div class="astro-sun">
-                <img class="astro-sun-img" src="./img/icons/sun.png" alt="sun">
-                <div class="astro-suntimes">
-                    <div class="astro-times-row">
-                        <img class="astro-img" src="./img/icons/sunrise.png" alt="sunrise">
-                        <p class="astro-p">восход: <span>${sunrise}</span></p>
-                    </div>
-                    <div class="astro-times-row">
-                        <img class="astro-img" src="./img/icons/sunset.png" alt="sunset">
-                        <p class="astro-p">закат: <span>${sunset}</span></p>
-                    </div>
-                </div>
-            </div>
-            <div class="astro-sun">
-                <img class="astro-sun-img" src="./img/icons/moon.png" alt="moon">
-                <div class="astro-suntimes">
-                    <div class="astro-times-row">
-                        <img class="astro-img" src="./img/icons/moonrise.png" alt="moonrise">
-                        <p class="astro-p">восход: <span>${moonrise}</span></p>
-                    </div>
-                    <div class="astro-times-row">
-                        <img class="astro-img" src="./img/icons/moonset.png" alt="moonset">
-                        <p class="astro-p">закат: <span>${moonset}</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="astro-moon-phase">фаза луны: ${moonPhase}</div>
-    </div>
-    `;
-    const weatherInfo = document.querySelector('.weather-info');
-    weatherInfo.insertAdjacentHTML('beforeend', html);
-}
 
 form.onsubmit = async function (e) {
     e.preventDefault();
@@ -109,6 +41,7 @@ form.onsubmit = async function (e) {
         removeCard();
         const currentData = await submitCurrent(data);
         const astroData = await submitAstro(dataAstro);
+        // console.log(currentData, astroData);
         showCard(currentData);
         showAstro(astroData);
     };
@@ -142,14 +75,15 @@ async function submitAstro(dataAstro){
     const moonset = timeConversion(dataAstro.astronomy.astro.moonset);
     const sunrise = timeConversion(dataAstro.astronomy.astro.sunrise);
     const sunset = timeConversion(dataAstro.astronomy.astro.sunset);
-    const is_moon_up = dataAstro.astronomy.astro.is_moon_up; // bool
-    const is_sun_up = dataAstro.astronomy.astro.is_sun_up; // bool
-    const moon_illumination = dataAstro.astronomy.astro.moon_illumination; // int %
+    const isMoonUp = dataAstro.astronomy.astro.is_moon_up; // bool
+    const isSunUp = dataAstro.astronomy.astro.is_sun_up; // bool
+    const moonIllumination = dataAstro.astronomy.astro.moon_illumination; // int %
     const moonPhase = moonPhases.find((obj) => obj.moonPhaseEng === dataAstro.astronomy.astro.moon_phase);
     const localtime = localtimeConversion(dataAstro.location.localtime);
+    console.log(localtime);
     const astroData = {localtime, sunrise, sunset, moonrise, moonset, 
         moonPhase: moonPhase.moonPhaseRus, 
-        moon_illumination, is_sun_up, is_moon_up,};
+        moonIllumination, isSunUp, isMoonUp};
     return astroData;
 }
 
@@ -178,5 +112,75 @@ function localtimeConversion(strLocaltime){
     const day = parseInt(match[3]);
     const hour = parseInt(match[4]);
     const mins = match[5];
-    return (day + ' ' + month + ' ' + year + ', ' + hour + ':' + mins);
+    return (hour + ':' + mins + ', ' + day + ' ' + month + ' ' + year);
+}
+
+function showCard(currentData) {
+    const {name, country, temp, conditions, icon, winddir, winddegree, windkph, windms, windpower} = currentData;
+    const html = `
+    <section class="weather-info">
+        <div class="weather-info-city">${name} <span>${country}</span></div>
+        <div class="weather-info-row">
+            <div class="weather-info-temp">${temp}<span>°c</span></div>
+            <img class="weather-img" src="${icon}" alt="Weather">
+        </div>
+        <div class="weather-desc">${conditions}</div>
+        <div class="weather-wind">
+            <div class="weather-wind-desc">
+                <div class="weather-wind-power"><span>Ветер </span>${windpower}</div>
+                <div class="weather-wind-dir">${winddir}</div>
+            </div>
+            <div class="weather-wind-arrow">
+                <img src="./img/arrow-up.svg" style="transform: rotate(${winddegree}deg);"/>
+            </div>
+        </div>
+        <div class="weather-wind-speed">
+            <div class="weather-wind-kph">${windkph}<span>км/ч</span></div>
+            <div class="weather-wind-ms">${windms}<span>м/с</span></div>                
+        </div>
+    </section>
+    `;
+    header.insertAdjacentHTML('afterend', html);
+};
+function showAstro(astroData){
+    const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonIllumination, isSunUp, isMoonUp} = astroData;
+    const html = `
+    <div class="astro">
+        <p class="astro-localtime">местное время - ${localtime}</p>
+        <div class="astro-row">
+            <div class="astro-sun">
+                <img class="astro-sun-img" src="./img/icons/sun.png" alt="sun">
+                <div class="astro-suntimes">
+                    <div class="astro-times-row">
+                        <img class="astro-img" src="./img/icons/sunrise.png" alt="sunrise">
+                        <p class="astro-p">восход: <span>${sunrise}</span></p>
+                    </div>
+                    <div class="astro-times-row">
+                        <img class="astro-img" src="./img/icons/sunset.png" alt="sunset">
+                        <p class="astro-p">закат: <span>${sunset}</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="astro-sun">
+                <img class="astro-sun-img" src="./img/icons/moon-crescent.png" alt="moon">
+                <div class="astro-suntimes">
+                    <div class="astro-times-row">
+                        <img class="astro-img" src="./img/icons/moonrise.png" alt="moonrise">
+                        <p class="astro-p">восход: <span>${moonrise}</span></p>
+                    </div>
+                    <div class="astro-times-row">
+                        <img class="astro-img" src="./img/icons/moonset.png" alt="moonset">
+                        <p class="astro-p">закат: <span>${moonset}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="astro-moon">
+            <div class="astro-moon-phase"></div>
+            <div class="astro-moon-phase">${moonPhase}<span> светимость: ${moonIllumination}%</span></div>
+        </div>
+    </div>
+    `;
+    const weatherInfo = document.querySelector('.weather-info');
+    weatherInfo.insertAdjacentHTML('beforeend', html);
 }
