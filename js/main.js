@@ -11,23 +11,26 @@ const footer = document.querySelector('.footer');
 
 function removeCard() {
     const prevCard = document.querySelector('.weather-info');
-    if (prevCard) prevCard.remove();
+    // const astro = document.querySelector('.astro');
+    if (prevCard) {
+        prevCard.remove();
+        // astro.remove();
+    }
 };
 async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
-    // console.log(data);
     return data;
 };
 async function getAstro(city) {
     const url = `https://api.weatherapi.com/v1/astronomy.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
-    // console.log(data);
     return data;
 };
-function showCard({ name, country, temp, conditions, icon, winddir, winddegree, windkph, windms, windpower }) {
+function showCard(currentData) {
+    const {name, country, temp, conditions, icon, winddir, winddegree, windkph, windms, windpower} = currentData;
     const html = `
     <section class="weather-info">
         <div class="weather-info-city">${name} <span>${country}</span></div>
@@ -56,7 +59,7 @@ function showCard({ name, country, temp, conditions, icon, winddir, winddegree, 
 function showAstro(astroData){
     const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moon_illumination, is_sun_up, is_moon_up} = astroData;
     const html = `
-    <section class="astro">
+    <div class="astro">
         <p class="astro-localtime">местное время - ${localtime}</p>
         <div class="astro-row">
             <div class="astro-sun">
@@ -87,9 +90,10 @@ function showAstro(astroData){
             </div>
         </div>
         <div class="astro-moon-phase">фаза луны: ${moonPhase}</div>
-    </section>
+    </div>
     `;
-    footer.insertAdjacentHTML('beforebegin', html);
+    const weatherInfo = document.querySelector('.weather-info');
+    weatherInfo.insertAdjacentHTML('beforeend', html);
 }
 
 form.onsubmit = async function (e) {
@@ -138,13 +142,11 @@ async function submitAstro(dataAstro){
     const moonset = timeConversion(dataAstro.astronomy.astro.moonset);
     const sunrise = timeConversion(dataAstro.astronomy.astro.sunrise);
     const sunset = timeConversion(dataAstro.astronomy.astro.sunset);
-    console.log(moonrise, moonset, sunrise, sunset);
     const is_moon_up = dataAstro.astronomy.astro.is_moon_up; // bool
     const is_sun_up = dataAstro.astronomy.astro.is_sun_up; // bool
     const moon_illumination = dataAstro.astronomy.astro.moon_illumination; // int %
     const moonPhase = moonPhases.find((obj) => obj.moonPhaseEng === dataAstro.astronomy.astro.moon_phase);
     const localtime = localtimeConversion(dataAstro.location.localtime);
-    console.log(localtime);
     const astroData = {localtime, sunrise, sunset, moonrise, moonset, 
         moonPhase: moonPhase.moonPhaseRus, 
         moon_illumination, is_sun_up, is_moon_up,};
@@ -154,17 +156,17 @@ async function submitAstro(dataAstro){
 function timeConversion(strTime) {
     const timeString = strTime.toString();
     if (timeString.match(/PM$/)) {
-        var match = timeString.match(/([0-9]+):([0-9]+) PM/)
-        var hours = parseInt(match[1]) + 12;
-        var minutes = match[2];
+        let match = timeString.match(/([0-9]+):([0-9]+) PM/)
+        let hours = parseInt(match[1]) + 12;
+        let minutes = match[2];
         if (parseInt(match[1]) === 12) {return parseInt(match[1])+ ':' + minutes} 
         else {return hours + ':' + minutes}
     } else {
-        var match = timeString.match(/([0-9]+):([0-9]+) AM/)
-        var hours = parseInt(match[1]);
-        var minutes = match[2];
+        let match = timeString.match(/([0-9]+):([0-9]+) AM/)
+        let hours = parseInt(match[1]);
+        let minutes = match[2];
         if (hours === 12) {return '00:' + minutes} 
-        else {return timeString.replace('AM', '')}
+        else {return hours + ':' + minutes}
     }
 }
 function localtimeConversion(strLocaltime){
