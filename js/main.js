@@ -146,7 +146,7 @@ function showAstro(astroData){
     const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonIllumination, isSunUp, isMoonUp} = astroData;
     const html = `
     <div class="astro">
-        <p class="astro-localtime">местное время - ${localtime}</p>
+        <p class="astro-localtime">местное время: <span>${localtime}</span></p>
         <div class="astro-row">
             <div class="astro-sun">
                 <img class="astro-sun-img" src="./img/icons/sun.png" alt="sun">

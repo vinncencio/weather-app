@@ -179,6 +179,7 @@ legend {
   .weather-info-city {
     flex-direction: column;
     align-items: center;
+    margin: 0;
   }
 }
 
@@ -297,10 +298,24 @@ legend {
   justify-content: center;
   margin-top: 20px;
 }
+@media (max-width: 320px) {
+  .astro {
+    margin: 0;
+  }
+}
 
 .astro-localtime {
   font-size: 16px;
   margin-bottom: 5px;
+  display: flex;
+  gap: 5px;
+}
+@media (max-width: 400px) {
+  .astro-localtime {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 .astro-row {
@@ -354,6 +369,13 @@ legend {
   width: 100%;
   text-align: center;
 }
+@media (max-width: 500px) {
+  .astro-moon {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
 
 .astro-moon-phase {
   width: 50%;
@@ -366,4 +388,9 @@ legend {
 .astro-moon-phase span {
   font-size: 12px;
   color: #333;
+}
+@media (max-width: 500px) {
+  .astro-moon-phase {
+    margin: 0;
+  }
 }/*# sourceMappingURL=main.css.map */
