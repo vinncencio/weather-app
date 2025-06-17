@@ -17,14 +17,14 @@ async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
 };
 async function getAstro(city) {
     const url = `https://api.weatherapi.com/v1/astronomy.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     return data;
 };
 
@@ -80,7 +80,7 @@ async function submitAstro(dataAstro){
     const moonIllumination = dataAstro.astronomy.astro.moon_illumination; // int %
     const moonPhase = moonPhases.find((obj) => obj.moonPhaseEng === dataAstro.astronomy.astro.moon_phase);
     const localtime = localtimeConversion(dataAstro.location.localtime);
-    console.log(localtime);
+    // console.log(localtime);
     const astroData = {localtime, sunrise, sunset, moonrise, moonset, 
         moonPhase: moonPhase.moonPhaseRus, 
         moonIllumination, isSunUp, isMoonUp};
