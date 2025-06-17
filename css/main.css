@@ -393,4 +393,9 @@ legend {
   .astro-moon-phase {
     margin: 0;
   }
+}
+
+.astro-p span {
+  font-size: 18px;
+  font-weight: 600;
 }/*# sourceMappingURL=main.css.map */

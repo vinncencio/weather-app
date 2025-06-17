@@ -153,11 +153,11 @@ function showAstro(astroData){
                 <div class="astro-suntimes">
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/sunrise.png" alt="sunrise">
-                        <p class="astro-p">восход: <span>${sunrise}</span></p>
+                        <p class="astro-p"><span>${sunrise}</span></p>
                     </div>
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/sunset.png" alt="sunset">
-                        <p class="astro-p">закат: <span>${sunset}</span></p>
+                        <p class="astro-p"><span>${sunset}</span></p>
                     </div>
                 </div>
             </div>
@@ -166,11 +166,11 @@ function showAstro(astroData){
                 <div class="astro-suntimes">
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/moonrise.png" alt="moonrise">
-                        <p class="astro-p">восход: <span>${moonrise}</span></p>
+                        <p class="astro-p"><span>${moonrise}</span></p>
                     </div>
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/moonset.png" alt="moonset">
-                        <p class="astro-p">закат: <span>${moonset}</span></p>
+                        <p class="astro-p"><span>${moonset}</span></p>
                     </div>
                 </div>
             </div>
