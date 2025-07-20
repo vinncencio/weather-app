@@ -41,7 +41,7 @@ form.onsubmit = async function (e) {
         removeCard();
         const currentData = await submitCurrent(data);
         const astroData = await submitAstro(dataAstro);
-        // console.log(currentData, astroData);
+        console.log(currentData, astroData);
         showCard(currentData);
         showAstro(astroData);
     };
@@ -83,6 +83,7 @@ async function submitAstro(dataAstro){
     // console.log(localtime);
     const astroData = {localtime, sunrise, sunset, moonrise, moonset, 
         moonPhase: moonPhase.moonPhaseRus, 
+        moonPhaseImg: moonPhase.moonPhaseImg, 
         moonIllumination, isSunUp, isMoonUp};
     return astroData;
 }
@@ -143,7 +144,7 @@ function showCard(currentData) {
     header.insertAdjacentHTML('afterend', html);
 };
 function showAstro(astroData){
-    const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonIllumination, isSunUp, isMoonUp} = astroData;
+    const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonPhaseImg, moonIllumination, isSunUp, isMoonUp} = astroData;
     const html = `
     <div class="astro">
         <p class="astro-localtime">местное время: <span>${localtime}</span></p>
@@ -162,7 +163,7 @@ function showAstro(astroData){
                 </div>
             </div>
             <div class="astro-sun">
-                <img class="astro-sun-img" src="./img/icons/moon-crescent.png" alt="moon">
+                <img class="astro-sun-img" src="./img/phases/${moonPhaseImg}" alt="moon">
                 <div class="astro-suntimes">
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/moonrise.png" alt="moonrise">
