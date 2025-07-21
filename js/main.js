@@ -150,7 +150,6 @@ function showAstro(astroData){
         <p class="astro-localtime">местное время: <span>${localtime}</span></p>
         <div class="astro-row">
             <div class="astro-sun">
-                <img class="astro-sun-img" src="./img/icons/sun.png" alt="sun">
                 <div class="astro-suntimes">
                     <div class="astro-times-row">
                         <img class="astro-img" src="./img/icons/sunrise.png" alt="sunrise">
