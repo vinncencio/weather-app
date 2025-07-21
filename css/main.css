@@ -332,6 +332,7 @@ legend {
 .astro-sun {
   display: flex;
   gap: 10px;
+  justify-content: center;
 }
 
 .astro-sun-img {
@@ -378,14 +379,11 @@ legend {
 }
 
 .astro-moon-phase {
-  width: 50%;
-  align-items: center;
-  justify-content: center;
-  margin-left: 30px;
+  margin: 0 auto;
   margin-top: 5px;
   font-size: 14px;
 }
-.astro-moon-phase span {
+.astro-moon-phase p {
   font-size: 12px;
   color: #333;
 }

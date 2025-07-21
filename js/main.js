@@ -176,8 +176,9 @@ function showAstro(astroData){
             </div>
         </div>
         <div class="astro-moon">
-            <div class="astro-moon-phase"></div>
-            <div class="astro-moon-phase">${moonPhase}<span> светимость: ${moonIllumination}%</span></div>
+            <div class="astro-moon-phase">${moonPhase}
+                <p> светимость: ${moonIllumination}%</p>
+            </div>
         </div>
     </div>
     `;
