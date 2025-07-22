@@ -96,13 +96,13 @@ function timeConversion(strTime) {
         let minutes = match[2];
         if (parseInt(match[1]) === 12) {return parseInt(match[1])+ ':' + minutes} 
         else {return hours + ':' + minutes}
-    } else {
+    } else if (timeString.match(/AM$/)) {
         let match = timeString.match(/([0-9]+):([0-9]+) AM/)
         let hours = parseInt(match[1]);
         let minutes = match[2];
         if (hours === 12) {return '00:' + minutes} 
         else {return hours + ':' + minutes}
-    }
+    } else {return timeString}
 }
 function localtimeConversion(strLocaltime){
     const localtimeString = strLocaltime.toString();
