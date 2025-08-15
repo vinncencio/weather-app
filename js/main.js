@@ -102,7 +102,7 @@ function timeConversion(strTime) {
         let minutes = match[2];
         if (hours === 12) {return '00:' + minutes} 
         else {return hours + ':' + minutes}
-    } else {return timeString}
+    } else return timeString
 }
 function localtimeConversion(strLocaltime){
     const localtimeString = strLocaltime.toString();
