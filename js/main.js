@@ -32,7 +32,6 @@ form.onsubmit = async function (e) {
     e.preventDefault();
     let city = input.value.trim();
     const data = await getWeather(city);
-    const dataAstro = await getAstro(city);
     if (data.error) {
         removeCard();
         const html = `<div class="weather-info">${data.error.message}</div>`;
@@ -40,6 +39,7 @@ form.onsubmit = async function (e) {
     } else {
         removeCard();
         const currentData = await submitCurrent(data);
+        const dataAstro = await getAstro(city);
         const astroData = await submitAstro(dataAstro);
         console.log(currentData, astroData);
         showCard(currentData);
@@ -102,7 +102,7 @@ function timeConversion(strTime) {
         let minutes = match[2];
         if (hours === 12) {return '00:' + minutes} 
         else {return hours + ':' + minutes}
-    } else return timeString
+    } else return timeString;
 }
 function localtimeConversion(strLocaltime){
     const localtimeString = strLocaltime.toString();
