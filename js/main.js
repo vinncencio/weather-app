@@ -10,11 +10,17 @@ const apiKey = '8d9deac627384df6b1102656231012';
 const header = document.querySelector('.header');
 const spinnerManager = new SpinnerManager('jsSpinner'); // Создаем экземпляр менеджера для спиннера
 
+function removeCard() {
+    const prevCard = document.querySelector('.weather-info');
+    if (prevCard) prevCard.remove();
+};
+
 input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault(); // предотвращаем отправку формы, если input внутри формы
-        console.log('нажат Enter, значение: ', input.value);
+        console.log('нажат enter, значение: ', input.value);
         let city = input.value.trim();
+        removeCard();
         try {
             submit(city);
         } catch (error) {
@@ -47,18 +53,14 @@ async function submit(city) {
             showCard(currentData);
             const dataAstro = await getAstro(city);
             const astroData = await submitAstro(dataAstro);
-            // console.log(currentData, astroData);
             showAstro(astroData);
         };
     } catch (error) {
         console.error('Ошибка загрузки:', error);
+        const html = `<div class="weather-info">${error.message}</div>`;
+        header.insertAdjacentHTML('afterend', html);
         throw error;
     }
-};
-
-function removeCard() {
-    const prevCard = document.querySelector('.weather-info');
-    if (prevCard) prevCard.remove();
 };
 
 async function getWeather(city) {
@@ -68,7 +70,6 @@ async function getWeather(city) {
         const response = await fetch(url);
         const data = await response.json();
         console.log('getWeather fetch');
-        // console.log(data);
         return data;
     } catch (error) {
         console.error('Ошибка загрузки:', error);
