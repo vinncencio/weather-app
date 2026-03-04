@@ -16,6 +16,9 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0 30px;
+    @media (max-width: 400px) {
+        padding: 0;
+    }
 }
 .header {
     padding: 10px;
@@ -59,7 +62,7 @@ body {
     right: 9px;
     cursor: pointer;
     transition: all .3s ease-in-out;
-    &:active {transform: translate(0px, -10px);}
+    &:active {transform: translate(10px, 10px);}
 }
 
 .footer {

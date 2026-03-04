@@ -17,7 +17,7 @@ function removeCard() {
 
 input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-        e.preventDefault(); // предотвращаем отправку формы, если input внутри формы
+        e.preventDefault(); // предотвращает отправку формы, если input внутри формы
         console.log('нажат enter, значение: ', input.value);
         let city = input.value.trim();
         removeCard();
@@ -33,6 +33,7 @@ input.addEventListener('keypress', (e) => {
 form.onsubmit = async function(e) {
     e.preventDefault();
     let city = input.value.trim();
+    removeCard();
     try {
         submit(city);
     } catch (error) {
