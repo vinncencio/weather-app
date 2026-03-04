@@ -24,7 +24,7 @@ input.addEventListener('keypress', (e) => {
         try {
             submit(city);
         } catch (error) {
-            console.error('Ошибка загрузки:', error);
+            console.error('Ошибка загрузки: ', error);
             throw error;
         }
     }
@@ -37,7 +37,7 @@ form.onsubmit = async function(e) {
     try {
         submit(city);
     } catch (error) {
-        console.error('Ошибка загрузки:', error);
+        console.error('Ошибка загрузки: ', error);
         throw error;
     }
 };
@@ -51,14 +51,14 @@ async function submit(city) {
         } else {
             removeCard();
             const currentData = await submitCurrent(data);
-            showCard(currentData);
+            showWeatherCard(currentData);
             const dataAstro = await getAstro(city);
             const astroData = await submitAstro(dataAstro);
-            showAstro(astroData);
+            showAstroCard(astroData);
         };
     } catch (error) {
-        console.error('Ошибка загрузки:', error);
-        const html = `<div class="weather-info">${error.message}</div>`;
+        console.error('Ошибка загрузки: ', error);
+        const html = `<div class="weather-info">Ошибка загрузки: ${error.message}</div>`;
         header.insertAdjacentHTML('afterend', html);
         throw error;
     }
@@ -74,7 +74,7 @@ async function getWeather(city) {
         return data;
     } catch (error) {
         console.error('Ошибка загрузки:', error);
-        const html = `<div class="weather-info">${error.message}</div>`;
+        const html = `<div class="weather-info">Ошибка загрузки: ${error.message}</div>`;
         header.insertAdjacentHTML('afterend', html);
         throw error;
     } finally {
@@ -91,7 +91,7 @@ async function getAstro(city) {
         return data;
     } catch (error) {
         console.error('Ошибка загрузки:', error);
-        const html = `<div class="weather-info">${error.message}</div>`;
+        const html = `<div class="weather-info">Ошибка загрузки: ${error.message}</div>`;
         header.insertAdjacentHTML('afterend', html);
         throw error;
     } finally {
@@ -168,7 +168,7 @@ function localtimeConversion(strLocaltime){
     return (hour + ':' + mins + ', ' + day + ' ' + month + ' ' + year);
 }
 
-function showCard(currentData) {
+function showWeatherCard(currentData) {
     const {name, country, temp, conditions, icon, winddir, winddegree, windkph, windms, windpower} = currentData;
     const html = `
     <section class="weather-info">
@@ -195,7 +195,7 @@ function showCard(currentData) {
     `;
     header.insertAdjacentHTML('afterend', html);
 };
-function showAstro(astroData){
+function showAstroCard(astroData){
     const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonPhaseImg, moonIllumination, isSunUp, isMoonUp} = astroData;
     const html = `
     <div class="astro">
