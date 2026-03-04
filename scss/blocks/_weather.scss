@@ -1,17 +1,15 @@
 /* weather pannel */
-.weather-app {
-    font-family: "Nunito", sans-serif;
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-}
+// .weather-app {
+//     display: grid;
+// }
 .weather-info {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    margin-top: 20px;
 }
 .weather-info-city {
-    margin-bottom: 10px;
     display: flex;
     font-weight: 700;
     font-size: 36px;
@@ -96,6 +94,7 @@
     }
 }
 .weather-wind-arrow {
+    position: relative;
     width: 50px;
     height: 50px;
     border: 1px solid #333;
@@ -104,6 +103,16 @@
     align-items: center;
     justify-content: center;
     & img {width: 30px;}
+    &::after {
+        position: absolute;
+        content: 'N';
+        width: 10px;
+        height: 10px;
+        top: -10px;
+        left: 17px;
+        font-weight: 800;
+        color: #000;
+    }
 }
 .weather-wind-kph, .weather-wind-ms {
     font-size: 36px;

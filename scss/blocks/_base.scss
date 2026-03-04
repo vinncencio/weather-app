@@ -1,15 +1,26 @@
 /* base styles */
-.container {
+body {
+    font-family: "Nunito", sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     background: linear-gradient(167deg, #42D2A6 4.7%, #007991 95.98%), #389196;
     color: #000;
+    // width: 100vw;
+    min-height: 100vh;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
 }
 .header {
-    padding: 20px;
+    padding: 10px;
 }
+
 .form {
     position: relative;
     display: flex;
@@ -17,12 +28,12 @@
     padding: 10px;
     width: 100%;
     height: 40px;
-    top: 50%;
-    left: 50%;
+    // top: 50%;
+    // left: 50%;
     background-color: #fff;
     border-radius: 60px;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    transform: translate(-50%, -50%);
+    // transform: translate(-50%, 50%);
     transition: all 0.3s ease;
     cursor: pointer;
     &.focus {
@@ -33,9 +44,9 @@
     position: absolute;
     padding-left: 10px;
     padding-bottom: 2px;
-    width: 100%;
+    width: 90%;
     font-size: 20px;
-    background: none;
+    // background: none;
     color: #5a6674;
     border: none;
     appearance: none;
@@ -52,6 +63,7 @@
 }
 
 .footer {
+    margin-top: auto;
     padding: 7px 15px;
     width: 100%;
     font-weight: 400;

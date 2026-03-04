@@ -1,0 +1,19 @@
+.container-spinner {
+    margin: auto;
+}
+.spinner {
+    padding: 30px;
+    width: 50px;
+    height: 50px;
+    border: 4px solid #fff;
+    border-top: 4px solid #173e58;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+.spinner.hidden {display: none;}
+
+/* Анимация вращения */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -3,48 +3,98 @@ import windDirs from "./wind-dirs.js";
 import windPower from "./wind-power.js";
 import moonPhases from "./moonPhases.js";
 import months from "./months.js";
+import SpinnerManager from "./spinner.js";
 const form = document.querySelector('#form');
 const input = document.querySelector('.form-input');
 const apiKey = '8d9deac627384df6b1102656231012';
 const header = document.querySelector('.header');
-// const footer = document.querySelector('.footer');
+const spinnerManager = new SpinnerManager('jsSpinner'); // Создаем экземпляр менеджера для спиннера
+
+input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // предотвращаем отправку формы, если input внутри формы
+        console.log('нажат Enter, значение: ', input.value);
+        let city = input.value.trim();
+        try {
+            submit(city);
+        } catch (error) {
+            console.error('Ошибка загрузки:', error);
+            throw error;
+        }
+    }
+});
+
+form.onsubmit = async function(e) {
+    e.preventDefault();
+    let city = input.value.trim();
+    try {
+        submit(city);
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        throw error;
+    }
+};
+async function submit(city) {
+    const data = await getWeather(city);
+    try {
+        if (data.error) {
+            removeCard();
+            const html = `<div class="weather-info">${data.error.message}</div>`;
+            header.insertAdjacentHTML('afterend', html);
+        } else {
+            removeCard();
+            const currentData = await submitCurrent(data);
+            showCard(currentData);
+            const dataAstro = await getAstro(city);
+            const astroData = await submitAstro(dataAstro);
+            // console.log(currentData, astroData);
+            showAstro(astroData);
+        };
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        throw error;
+    }
+};
 
 function removeCard() {
     const prevCard = document.querySelector('.weather-info');
     if (prevCard) prevCard.remove();
 };
+
 async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log(data);
-    return data;
+    spinnerManager.show();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log('getWeather fetch');
+        // console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        const html = `<div class="weather-info">${error.message}</div>`;
+        header.insertAdjacentHTML('afterend', html);
+        throw error;
+    } finally {
+        spinnerManager.hide();
+    }
 };
 async function getAstro(city) {
     const url = `https://api.weatherapi.com/v1/astronomy.json?key=${apiKey}&q=${city}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log(data);
-    return data;
-};
-
-form.onsubmit = async function (e) {
-    e.preventDefault();
-    let city = input.value.trim();
-    const data = await getWeather(city);
-    if (data.error) {
-        removeCard();
-        const html = `<div class="weather-info">${data.error.message}</div>`;
+    spinnerManager.show();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log('getAstro fetch');
+        return data;
+    } catch (error) {
+        console.error('Ошибка загрузки:', error);
+        const html = `<div class="weather-info">${error.message}</div>`;
         header.insertAdjacentHTML('afterend', html);
-    } else {
-        removeCard();
-        const currentData = await submitCurrent(data);
-        const dataAstro = await getAstro(city);
-        const astroData = await submitAstro(dataAstro);
-        console.log(currentData, astroData);
-        showCard(currentData);
-        showAstro(astroData);
-    };
+        throw error;
+    } finally {
+        spinnerManager.hide();
+    }
 };
 
 async function submitCurrent(data){
