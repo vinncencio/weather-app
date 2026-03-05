@@ -50,10 +50,13 @@ body {
     width: 90%;
     font-size: 20px;
     background: none;
-    color: #5a6674;
+    color: #000;
     border: none;
     appearance: none;
     outline: none;
+    &::placeholder {
+        color: #818fa0;
+    }
 }
 .form-btn {
     position: absolute;

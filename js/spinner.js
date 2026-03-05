@@ -16,7 +16,7 @@ class SpinnerManager {
         }
     }
     toggle() {
-        if (this.isVisible) this.hide();
+        if (this.isVisible) this.hide()
         else this.show();
     }
     showForDuration(duration) { // показать спиннер на заданное время
