@@ -128,9 +128,9 @@ async function submitAstro(dataAstro){
     const moonset = timeConversion(dataAstro.astronomy.astro.moonset);
     const sunrise = timeConversion(dataAstro.astronomy.astro.sunrise);
     const sunset = timeConversion(dataAstro.astronomy.astro.sunset);
+    // console.log(sunrise, sunset); // '5:34' '20:22'
     const isMoonUp = dataAstro.astronomy.astro.is_moon_up; // bool
     const isSunUp = dataAstro.astronomy.astro.is_sun_up; // bool
-    // console.log(sunrise, sunset); // '5:34' '20:22'
     const dayLength = getDayLengthString(sunrise, sunset);
     // console.log(dayLength); // 14:48
     const moonIllumination = dataAstro.astronomy.astro.moon_illumination; // int %
