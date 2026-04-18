@@ -69,10 +69,29 @@
 .astro-moon-phase {
     margin: 0 auto;
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 12px;
+    color: #333;
     & p {
-        font-size: 12px;
+        font-size: 14px;
+        color: #000;
+        margin-top: -1px;
+    }
+    @media (max-width: 500px) {
+        margin: 0;
+    }
+}
+.astro-day-long {
+    margin: 0 auto;
+    margin-top: 5px;
+    font-size: 12px;
+    & p {
         color: #333;
+    }
+    & p.day-long {
+        font-size: 16px;
+        font-weight: 600;
+        color: #000;
+        margin-top: -3px;
     }
     @media (max-width: 500px) {
         margin: 0;

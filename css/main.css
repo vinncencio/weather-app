@@ -406,14 +406,36 @@ body {
 .astro-moon-phase {
   margin: 0 auto;
   margin-top: 5px;
-  font-size: 14px;
-}
-.astro-moon-phase p {
   font-size: 12px;
   color: #333;
 }
+.astro-moon-phase p {
+  font-size: 14px;
+  color: #000;
+  margin-top: -1px;
+}
 @media (max-width: 500px) {
   .astro-moon-phase {
+    margin: 0;
+  }
+}
+
+.astro-day-long {
+  margin: 0 auto;
+  margin-top: 5px;
+  font-size: 12px;
+}
+.astro-day-long p {
+  color: #333;
+}
+.astro-day-long p.day-long {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin-top: -3px;
+}
+@media (max-width: 500px) {
+  .astro-day-long {
     margin: 0;
   }
 }

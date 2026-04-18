@@ -53,6 +53,7 @@ async function submit(city) {
             const currentData = await submitCurrent(data);
             showWeatherCard(currentData);
             const dataAstro = await getAstro(city);
+            // console.log(dataAstro);
             const astroData = await submitAstro(dataAstro);
             showAstroCard(astroData);
         };
@@ -129,16 +130,26 @@ async function submitAstro(dataAstro){
     const sunset = timeConversion(dataAstro.astronomy.astro.sunset);
     const isMoonUp = dataAstro.astronomy.astro.is_moon_up; // bool
     const isSunUp = dataAstro.astronomy.astro.is_sun_up; // bool
+    // console.log(sunrise, sunset); // '5:34' '20:22'
+    const dayLength = getDayLengthString(sunrise, sunset);
+    // console.log(dayLength); // 14:48
     const moonIllumination = dataAstro.astronomy.astro.moon_illumination; // int %
     const moonPhase = moonPhases.find((obj) => obj.moonPhaseEng === dataAstro.astronomy.astro.moon_phase);
     const localtime = localtimeConversion(dataAstro.location.localtime);
     // console.log(localtime);
-    const astroData = {localtime, sunrise, sunset, moonrise, moonset, 
+    const astroData = {localtime, sunrise, sunset, dayLength, moonrise, moonset, 
         moonPhase: moonPhase.moonPhaseRus, 
         moonPhaseImg: moonPhase.moonPhaseImg, 
         moonIllumination, isSunUp, isMoonUp};
     return astroData;
 }
+
+const getDayLengthString = (sunrise, sunset) => {
+    const toMin = t => t.split(':').reduce((h,m) => h*60 + +m, 0);
+    let diff = toMin(sunset) - toMin(sunrise);
+    if (diff < 0) diff += 1440;
+    return `${Math.floor(diff / 60)}:${diff % 60}`;
+};
 
 function timeConversion(strTime) {
     const timeString = strTime.toString();
@@ -196,7 +207,7 @@ function showWeatherCard(currentData) {
     header.insertAdjacentHTML('afterend', html);
 };
 function showAstroCard(astroData){
-    const {localtime, sunrise, sunset, moonrise, moonset, moonPhase, moonPhaseImg, moonIllumination, isSunUp, isMoonUp} = astroData;
+    const {localtime, sunrise, sunset, dayLength, moonrise, moonset, moonPhase, moonPhaseImg, moonIllumination, isSunUp, isMoonUp} = astroData;
     const html = `
     <div class="astro">
         <p class="astro-localtime">местное время: <span>${localtime}</span></p>
@@ -228,6 +239,10 @@ function showAstroCard(astroData){
             </div>
         </div>
         <div class="astro-moon">
+            <div class="astro-day-long">
+                <p>длина светового дня:</p>
+                <p class="day-long">${dayLength}</p>
+            </div>
             <div class="astro-moon-phase">${moonPhase}
                 <p> светимость: ${moonIllumination}%</p>
             </div>
