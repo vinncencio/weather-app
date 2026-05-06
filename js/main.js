@@ -148,7 +148,8 @@ const getDayLengthString = (sunrise, sunset) => {
     const toMin = t => t.split(':').reduce((h,m) => h*60 + +m, 0);
     let diff = toMin(sunset) - toMin(sunrise);
     if (diff < 0) diff += 1440;
-    return `${Math.floor(diff / 60)}:${diff % 60}`;
+    let mins = diff % 60 < 10 ? '0' + diff % 60 : diff % 60;
+    return `${Math.floor(diff / 60)}:${mins}`;
 };
 
 function timeConversion(strTime) {
