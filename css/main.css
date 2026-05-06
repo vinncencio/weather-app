@@ -394,6 +394,7 @@ body {
   gap: 10px;
   width: 100%;
   text-align: center;
+  align-items: center;
 }
 @media (max-width: 500px) {
   .astro-moon {
@@ -429,7 +430,7 @@ body {
   color: #333;
 }
 .astro-day-long p.day-long {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #000;
   margin-top: -3px;
